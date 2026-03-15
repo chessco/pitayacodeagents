@@ -7,15 +7,15 @@ export class AgentsService {
   constructor(private prisma: PrismaService) {}
 
   findAll() {
-    return this.prisma.agent.findMany({ include: { tasks: true } });
+    return this.prisma.client.agent.findMany();
   }
 
   findOne(id: string) {
-    return this.prisma.agent.findUnique({ where: { id }, include: { tasks: true } });
+    return this.prisma.client.agent.findUnique({ where: { id } });
   }
 
   create(dto: CreateAgentDto) {
-    return this.prisma.agent.create({
+    return this.prisma.client.agent.create({
       data: {
         name: dto.name,
         role: dto.role,
@@ -25,7 +25,7 @@ export class AgentsService {
   }
 
   updateStatus(id: string, status: string) {
-    return this.prisma.agent.update({
+    return this.prisma.client.agent.update({
       where: { id },
       data: { status },
     });

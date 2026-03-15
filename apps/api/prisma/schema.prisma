@@ -7,11 +7,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String
+  status    String   @default("Active")
+  agents    Agent[]
+  metrics   Metric[]
+  projects  SiteProject[]
+  auditLogs AuditLog[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Agent {
   id             String   @id @default(uuid())
+  tenantId       String
+  tenant         Tenant   @relation(fields: [tenantId], references: [id])
   name           String
   role           String   // secretary, marketing, sales, developer, ceo
-  status         String   @default("Idle") // Idle, Busy, Approval Required
+  status         String   @default("Idle")
   skills         Json?    
   tasksPending   Int      @default(0)
   tasksCompleted Int      @default(0)
@@ -27,8 +41,8 @@ model Task {
   description  String   @db.Text
   agentOwnerId String
   agentOwner   Agent    @relation(fields: [agentOwnerId], references: [id])
-  status       String   @default("Pending") // Pending, In_Progress, Completed
-  priority     String   @default("Medium")  // Low, Medium, High
+  status       String   @default("Pending")
+  priority     String   @default("Medium")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -38,20 +52,24 @@ model Approval {
   requesterAgentId String
   requesterAgent   Agent    @relation("requester", fields: [requesterAgentId], references: [id])
   action           String
-  status           String   @default("Pending") // Pending, Approved, Rejected
+  status           String   @default("Pending")
   approvedBy       String?
   createdAt        DateTime @default(now())
 }
 
 model Metric {
   id        String   @id @default(uuid())
-  key       String   // e.g. leadsGenerated
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  key       String   
   value     Int
   timestamp DateTime @default(now())
 }
 
 model SiteProject {
   id             String   @id @default(uuid())
+  tenantId       String
+  tenant         Tenant   @relation(fields: [tenantId], references: [id])
   domain         String
   status         String   @default("Draft")
   pagesGenerated Int      @default(0)
@@ -60,6 +78,8 @@ model SiteProject {
 
 model AuditLog {
   id        String   @id @default(uuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
   action    String
   actor     String
   details   String   @db.Text

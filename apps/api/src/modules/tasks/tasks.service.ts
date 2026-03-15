@@ -7,11 +7,11 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 export class TasksService {
   constructor(private prisma: PrismaService) {}
 
-  findAll() { return this.prisma.task.findMany({ include: { agentOwner: true } }); }
+  findAll() { return this.prisma.client.task.findMany({ include: { agentOwner: true } }); }
 
   async create(dto: CreateTaskDto) {
-    const task = await this.prisma.task.create({ data: dto });
-    await this.prisma.agent.update({
+    const task = await this.prisma.client.task.create({ data: dto });
+    await this.prisma.client.agent.update({
       where: { id: dto.agentOwnerId },
       data: { tasksPending: { increment: 1 } },
     });
@@ -19,9 +19,9 @@ export class TasksService {
   }
 
   async update(id: string, dto: UpdateTaskDto) {
-    const task = await this.prisma.task.update({ where: { id }, data: dto });
+    const task = await this.prisma.client.task.update({ where: { id }, data: dto });
     if (dto.status === 'Completed') {
-      await this.prisma.agent.update({
+      await this.prisma.client.agent.update({
         where: { id: task.agentOwnerId },
         data: {
           tasksPending: { decrement: 1 },
