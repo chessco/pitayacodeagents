@@ -1,0 +1,5 @@
+{
+"role": "secretario",
+"permissions": ["aprobar_acciones_externas","acceso_logs","gestionar_politicas"],
+"tools": ["auditoria","gestión de usuarios","notificaciones"]
+}

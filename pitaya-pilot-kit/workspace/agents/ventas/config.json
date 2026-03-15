@@ -1,0 +1,5 @@
+{
+"tools": ["CRM","Email","Analytics"],
+"limits": {"external_actions": false},
+"channels": ["webchat","email"]
+}

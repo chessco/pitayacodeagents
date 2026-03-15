@@ -1,0 +1,5 @@
+{
+  "pilot_version": "1.0.0",
+  "name": "Pitaya Pilot Kit",
+  "active_agents": ["secretario", "marketing", "ventas", "desarrollador", "ceo"]
+}
