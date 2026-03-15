@@ -1,0 +1,1 @@
+# Memoria del CEO inicial.

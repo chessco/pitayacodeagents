@@ -1,0 +1,5 @@
+{
+ "agent": "developer",
+ "approvalRequired": true,
+ "maxConcurrentTasks": 3
+}

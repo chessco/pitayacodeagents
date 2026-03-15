@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Agent {
+  id             String   @id @default(uuid())
+  name           String
+  role           String   // secretary, marketing, sales, developer, ceo
+  status         String   @default("Idle") // Idle, Busy, Approval Required
+  skills         Json?    
+  tasksPending   Int      @default(0)
+  tasksCompleted Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  tasks          Task[]
+  approvals      Approval[] @relation("requester")
+}
+
+model Task {
+  id           String   @id @default(uuid())
+  title        String
+  description  String   @db.Text
+  agentOwnerId String
+  agentOwner   Agent    @relation(fields: [agentOwnerId], references: [id])
+  status       String   @default("Pending") // Pending, In_Progress, Completed
+  priority     String   @default("Medium")  // Low, Medium, High
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Approval {
+  id               String   @id @default(uuid())
+  requesterAgentId String
+  requesterAgent   Agent    @relation("requester", fields: [requesterAgentId], references: [id])
+  action           String
+  status           String   @default("Pending") // Pending, Approved, Rejected
+  approvedBy       String?
+  createdAt        DateTime @default(now())
+}
+
+model Metric {
+  id        String   @id @default(uuid())
+  key       String   // e.g. leadsGenerated
+  value     Int
+  timestamp DateTime @default(now())
+}
+
+model SiteProject {
+  id             String   @id @default(uuid())
+  domain         String
+  status         String   @default("Draft")
+  pagesGenerated Int      @default(0)
+  lastUpdated    DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  action    String
+  actor     String
+  details   String   @db.Text
+  timestamp DateTime @default(now())
+}

@@ -1,0 +1,5 @@
+{
+ "agent": "sales",
+ "approvalRequired": true,
+ "maxConcurrentTasks": 10
+}

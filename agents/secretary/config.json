@@ -1,0 +1,5 @@
+{
+ "agent": "secretary",
+ "approvalRequired": false,
+ "maxConcurrentTasks": 10
+}
