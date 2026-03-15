@@ -1,33 +1,35 @@
+import { useState, useEffect } from 'react';
+import { apiClient } from '../api/client';
+
 export default function Tasks() {
+  const [tasks, setTasks] = useState<any[]>([]);
+
+  useEffect(() => {
+    apiClient.get('/tasks').then(setTasks).catch(console.error);
+  }, []);
+
   return (
     <div>
-      <h1 className="text-3xl font-bold tracking-tight mb-8">Tasks</h1>
-      <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
-        <table className="w-full text-left">
-          <thead className="border-b border-slate-800 bg-slate-950 text-slate-400 text-sm">
-            <tr>
-              <th className="p-4">Title</th>
-              <th className="p-4">Agent</th>
-              <th className="p-4">Priority</th>
-              <th className="p-4">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b border-slate-800 hover:bg-slate-800/30">
-              <td className="p-4 font-medium">Generate 3 Ideas for Landing Page</td>
-              <td className="p-4">Marketing</td>
-              <td className="p-4 text-teal-400">High</td>
-              <td className="p-4 text-amber-500">In Progress</td>
-            </tr>
-            <tr className="hover:bg-slate-800/30">
-              <td className="p-4 font-medium">Design API REST for Sales CRM</td>
-              <td className="p-4">Developer</td>
-              <td className="p-4 text-slate-400">Medium</td>
-              <td className="p-4 text-slate-400">Pending</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <h1 className="text-3xl font-bold tracking-tight mb-8">Gestión de Tareas</h1>
+      {tasks.length === 0 ? (
+        <div className="p-8 border border-dashed border-slate-800 rounded-xl text-center text-slate-400">
+          No hay tareas en proceso para este Workspace.
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {tasks.map((task, i) => (
+            <div key={task.id || i} className="p-6 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-between">
+              <div>
+                <div className="text-lg font-semibold">{task.title}</div>
+                <div className="text-sm text-slate-400">{task.description}</div>
+              </div>
+              <span className={px-3 py-1 text-xs rounded-full }>
+                {task.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

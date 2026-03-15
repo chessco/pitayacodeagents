@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
+import { apiClient } from '../api/client';
 
 export default function Dashboard() {
+  const [metrics, setMetrics] = useState<any>(null);
+
+  useEffect(() => {
+    apiClient.get('/dashboard/metrics').then(setMetrics).catch(console.error);
+  }, []);
+
   return (
     <div>
       <h1 className="text-3xl font-bold tracking-tight mb-8">Dashboard</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <MetricCard title="Leads Generated" value="1,245" sub="Marketing Agent" />
-        <MetricCard title="Tasks Completed" value="89" sub="Developer / Sales" />
-        <MetricCard title="Pending Approvals" value="4" sub="Secretary Agent" />
-        <MetricCard title="Turnaround Time" value="2.5 hrs" sub="Average Response" />
+        <MetricCard title="Agentes Activos" value={metrics?.agentsActive || 0} sub="Capacidad Máxima" />
+        <MetricCard title="Tareas Completadas" value={metrics?.tasksCompleted || 0} sub="Volumen Histórico" />
+        <MetricCard title="Aprobaciones Pendientes" value={metrics?.pendingApprovals || 0} sub="Acciones Críticas" />
+        <MetricCard title="Leads Generados" value={metrics?.leadsGenerated || 0} sub="+18% mensualmente" />
       </div>
     </div>
   );
