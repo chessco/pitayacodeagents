@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { IAgentRepository } from '../../../domain/agents/agent.repository';
+import type { IAgentRepository } from '../../../domain/agents/agent.repository';
 
 @Injectable()
 export class GetAgentsUseCase {
@@ -9,3 +9,4 @@ export class GetAgentsUseCase {
 
   execute() { return this.repo.findAll(); }
 }
+

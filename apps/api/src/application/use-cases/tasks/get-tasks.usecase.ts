@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { ITaskRepository } from '../../../domain/tasks/task.repository';
+import type { ITaskRepository } from '../../../domain/tasks/task.repository';
 
 @Injectable()
 export class GetTasksUseCase {
@@ -9,3 +9,4 @@ export class GetTasksUseCase {
 
   execute() { return this.repo.findAll(); }
 }
+

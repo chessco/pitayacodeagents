@@ -27,23 +27,23 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
       query: {
         $allModels: {
           async findMany({ args, query }) {
-            args.where = { ...args.where, tenantId };
+            args.where = { ...args.where, tenantId } as any;
             return query(args);
           },
           async findUnique({ args, query }) {
-            args.where = { ...args.where, tenantId };
+            args.where = { ...args.where, tenantId } as any;
             return query(args);
           },
           async create({ args, query }) {
-            args.data = { ...args.data, tenantId };
+            args.data = { ...args.data, tenantId } as any;
             return query(args);
           },
           async update({ args, query }) {
-            args.where = { ...args.where, tenantId };
+            args.where = { ...args.where, tenantId } as any;
             return query(args);
           },
           async count({ args, query }) {
-            args.where = { ...args.where, tenantId };
+            args.where = { ...args.where, tenantId } as any;
             return query(args);
           },
           // Add delete/updateMany if desired
@@ -52,3 +52,4 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     });
   }
 }
+

@@ -21,7 +21,9 @@ export default function Sidebar() {
             key={link.to}
             to={link.to}
             className={({ isActive }) =>
-              lex items-center gap-3 px-4 py-3 rounded-lg transition-all 
+              `flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                isActive ? 'bg-teal-500/10 text-teal-400 font-semibold' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+              }`
             }
           >
             <link.icon className="w-5 h-5" />

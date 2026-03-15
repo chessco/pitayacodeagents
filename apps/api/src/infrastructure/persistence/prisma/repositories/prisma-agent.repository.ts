@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '../../../../prisma/prisma.service';
 import { IAgentRepository } from '../../../../domain/agents/agent.repository';
 import { Agent } from '../../../../domain/agents/agent.entity';
 
@@ -36,3 +36,4 @@ export class PrismaAgentRepository implements IAgentRepository {
     return record as Agent;
   }
 }
+

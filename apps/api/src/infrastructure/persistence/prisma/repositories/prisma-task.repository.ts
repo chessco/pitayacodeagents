@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '../../../../prisma/prisma.service';
 import { ITaskRepository } from '../../../../domain/tasks/task.repository';
 import { Task } from '../../../../domain/tasks/task.entity';
 
@@ -35,3 +35,4 @@ export class PrismaTaskRepository implements ITaskRepository {
     return record as Task;
   }
 }
+

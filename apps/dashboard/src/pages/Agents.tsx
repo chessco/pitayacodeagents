@@ -18,7 +18,10 @@ export default function Agents() {
               <div className="text-sm text-slate-400">{ag.role}</div>
             </div>
             <div className="text-right">
-              <span className={inline-block px-3 py-1 text-xs rounded-full }>
+              <span className={`inline-block px-3 py-1 text-xs rounded-full ${
+                ag.status === 'Idle' ? 'bg-slate-800 text-slate-400' : 
+                ag.status === 'Busy' ? 'bg-teal-500/10 text-teal-400' : 'bg-amber-500/10 text-amber-500'
+              }`}>
                 {ag.status}
               </span>
               <div className="text-xs text-slate-500 mt-1">{ag.tasks} tasks active</div>
