@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors(); // Enable CORS for dashboard
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(3000);
-  console.log('Backend running on http://localhost:3000');
+  await app.listen(3010);
+  console.log('Backend running on http://localhost:3010');
 }
 bootstrap();

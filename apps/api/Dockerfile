@@ -10,6 +10,6 @@ COPY . .
 # Generate Prisma Client (Expects schema.prisma inside prisma)
 RUN npx prisma generate
 
-EXPOSE 3000
+EXPOSE 3010
 
 CMD ["npm", "run", "start:dev"]
