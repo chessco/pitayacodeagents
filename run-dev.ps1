@@ -18,13 +18,13 @@ Start-Sleep -Seconds 8
 
 # 3. Lanzar Backend (API) en una nueva ventana
 Write-Host "[3] Lanzando Backend API (Puerto 3010)..." -ForegroundColor White
-Start-Process powershell -WindowStyle Normal -ArgumentList "-NoExit", "-Command", "cd apps/api; Write-Host 'Instalando dependencias...' -ForegroundColor Cyan; npm install; npx prisma generate; Write-Host 'Iniciando Backend...' -ForegroundColor Green; npm run start:dev"
+Start-Process powershell -WindowStyle Normal -ArgumentList "-NoExit", "-Command", "cd apps/api; Write-Host 'Instalando dependencias...' -ForegroundColor Cyan; npm install; npx prisma generate; Write-Host 'Sincronizando base de datos...' -ForegroundColor Yellow; npx prisma db push; Write-Host 'Iniciando Backend...' -ForegroundColor Green; npm run start:dev"
 
 # 4. Lanzar Frontend (Dashboard) en una nueva ventana
-Write-Host "[4] Lanzando Frontend Dashboard (Puerto 3001)..." -ForegroundColor White
+Write-Host "[4] Lanzando Frontend Dashboard (Puerto 3000)..." -ForegroundColor White
 Start-Process powershell -WindowStyle Normal -ArgumentList "-NoExit", "-Command", "cd apps/dashboard; Write-Host 'Instalando dependencias...' -ForegroundColor Cyan; npm install; Write-Host 'Iniciando Frontend...' -ForegroundColor Green; npm run dev"
 
 Write-Host "`n--- ✅ Ventanas desplegadas. Todo listo ---" -ForegroundColor Green
 Write-Host "API: http://localhost:3010" -ForegroundColor Cyan
-Write-Host "Dashboard: http://localhost:3001" -ForegroundColor Cyan
+Write-Host "Dashboard: http://localhost:3000" -ForegroundColor Cyan
 Write-Host "MySQL: localhost:3306 (user: root / pass: root)" -ForegroundColor Yellow
