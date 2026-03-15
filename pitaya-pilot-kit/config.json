@@ -1,5 +1,6 @@
 {
-  "pilot_version": "1.0.0",
-  "name": "Pitaya Pilot Kit",
-  "active_agents": ["secretario", "marketing", "ventas", "desarrollador", "ceo"]
+"tools": ["CRM","CMS","Email","Analytics","Repos"],
+"security": {"external_actions": false, "log_retention_days": 365},
+"channels": ["webchat","SITE"],
+"roles": ["secretario","marketing","ventas","desarrollador","ceo"]
 }

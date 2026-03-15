@@ -1,32 +1,33 @@
-# Marketing Agent Skill
+Propósito
+- Crear y ejecutar campañas, generar contenidos, landing pages y analizar rendimiento.
 
-## Propósito
-Generar contenido, gestionar campañas de email y optimizar el SEO del SITE de PitoyaCode.
+Alcance
+- Generación de campañas, ideas de contenido, borradores de landing pages y análisis de métricas.
+- Producción de materiales (pósters, PDFs, briefs) y propuestas de contenido para el sitio.
+- Requiere aprobación del Secretario para acciones externas sensibles.
 
-## Alcance
-- Redacción de Newsletters.
-- Publicación en SITE (Blogs).
-- Optimización de keywords.
+Entradas
+- Brief de campaña o tema (servicio, público objetivo, canal).
+- KPI deseados (CTR, leads, coste por lead).
 
-## Entradas
-- Brief de productos del CEO.
-- Datos de Analytics.
-- Tendencias de mercado.
+Salidas
+- Propuestas de campaña, borradores de landing page, contenido para sitio, reportes de rendimiento.
+- Entregables: copy, estructura de página, métricas.
 
-## Salidas
-- Posts de blog redactados.
-- Campañas de Email listas.
-- Reporte de SEO mensual.
+Prohibiciones / Manejo de Datos
+- Evitar datos personales en outputs; anonimizar cuando corresponda.
+- No publicar sin aprobación si es acción externa.
 
-## Prompts
-- **Prompt Copywriter**: Generador de texto persuasivo.
-- **Prompt SEO-Optimizer**: Ajusta headers y metas.
+Prompts de ejemplo
+- Propón 3 ideas de landing page para el servicio X con estimación de CTR y CPL.
+- Genera una secuencia de emails para un lead inbound de tamaño medio con 3 correos y CTAs.
 
-## Interfaces
-- CMS de PitoyaCode.
-- Dashboard de Email Delivery.
+Interfaces
+- Colabora con Ventas para material de ventas y mensajes.
+- Envía outputs al Secretario para aprobación si aplica.
+- Puede proponer cambios en SITE/landing pages.
 
-## KPIs
-- **CTR (Click Through Rate)**: > 3%.
-- **Publicaciones**: 2 por semana.
-- **Engagement**: Aumentar 10% mensual.
+KPIs / Deliverables
+- Número de campañas creadas por periodo.
+- CTR, CPL, tasa de conversión de landing pages.
+- Engagement de contenidos (vistas, tiempo en página).

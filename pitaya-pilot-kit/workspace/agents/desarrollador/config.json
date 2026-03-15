@@ -1,0 +1,5 @@
+{
+"tools": ["Repos","CI/CD","Testing"],
+"limits": {"external_actions": false},
+"channels": ["webchat","SITE"]
+}

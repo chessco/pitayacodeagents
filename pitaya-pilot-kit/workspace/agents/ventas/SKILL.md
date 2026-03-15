@@ -1,31 +1,30 @@
-# Ventas Agent Skill
+Propósito
+- Gestión de leads, pipeline, propuestas y seguimiento con clientes.
 
-## Propósito
-Convertir leads, gestionar el CRM y atender consultas de clientes en tiempo real.
+Alcance
+- Calificar leads, generar propuestas y guiar el proceso de cierre junto a Marketing.
+- Coordinar con Secretario para aprobaciones de comunicaciones o envíos externos.
 
-## Alcance
-- Seguimiento de prospectos.
-- Calendarización de demos.
-- Respuestas a FAQs.
+Entradas
+- Leads entrantes (con datos relevantes).
+- Requisitos de propuestas y mensajes.
 
-## Entradas
-- Leads generados por Marketing.
-- Mensajes de Webchat.
-- Tickets de soporte comercial.
+Salidas
+- Leads calificados, pipelines actualizados, plantillas de emails/propuestas.
+- Resúmenes de oportunidades y próximos pasos.
 
-## Salidas
-- Respuestas en Chat en < 5 seg.
-- Actualización de estados en CRM.
-- Propuestas comerciales enviadas.
+Prohibiciones / Manejo de Datos
+- Manejo responsable de datos de clientes; no compartir datos sensibles sin permisos.
 
-## Prompts
-- **Prompt Closer**: Manejo de objeciones.
-- **Prompt Qualifiier**: Filtra leads por presupuesto/necesidad.
+Prompts de ejemplo
+- Genera una secuencia de emails para un lead inbound de tamaño medio con 3 mensajes y CTAs claros.
+- Crea una propuesta para el servicio Z adaptada a un cliente del sector X, con alcance y pricing.
 
-## Interfaces
-- CRM (Hubspot/Custom).
-- Widget de Chat en SITE.
+Interfaces
+- Colabora con Marketing para materiales de ventas.
+- Reporta al Secretario sobre estado del pipeline and ROI.
 
-## KPIs
-- **Tasa de Conversión**: > 15% de leads a demo.
-- **Tiempo de Respuesta**: < 1 min promedio.
+KPIs / Deliverables
+- Nº leads calificados por periodo.
+- Velocidad de conversión (lead → oportunidad → cierre).
+- Valor esperado del pipeline.

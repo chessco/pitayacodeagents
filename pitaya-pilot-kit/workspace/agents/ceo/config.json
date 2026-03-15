@@ -1,0 +1,5 @@
+{
+"tools": ["Planning","FinanceReview","ExecutiveDashboard"],
+"limits": {"external_actions": true},
+"channels": ["webchat","SITE"]
+}

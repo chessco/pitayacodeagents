@@ -1,0 +1,2 @@
+- Memoria del CEO (plantilla).
+- Visión, prioridades, resultados y lecciones estratégicas.

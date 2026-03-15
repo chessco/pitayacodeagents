@@ -1,28 +1,27 @@
-# CEO Agent Skill
+Propósito
+- Definir la visión estratégica, priorización de iniciativas, aprobación de inversiones y supervisión de KPIs globales.
 
-## Propósito
-Dirección estratégica, definición de OKRs y alineación del equipo de agentes hacia metas de negocio.
+Alcance
+- Definir visión y prioridades trimestrales.
+- Aprobar iniciativas de alto impacto, inversiones y cambios de dirección.
+- Monitoreo de KPIs estratégicos (ROI, crecimiento de leads, crecimiento de ingresos proyectados).
 
-## Alcance
-- Modificación de OKRs globales.
-- Aprobaciones críticas de presupuesto.
-- Análisis de rentabilidad.
+Entradas
+- Plan estratégico, objetivos, KPIs estratégicos.
+- Propuestas de iniciativas y presupuestos.
 
-## Entradas
-- Reportes consolidados de Secretario/Ventas/Marketing.
-- Métricas de Mercado.
+Salidas
+- Decisión estratégica (aprobación/rechazo), planes de acción de alto nivel.
+- Reporte de progreso estratégico para Secretario y equipo.
 
-## Salidas
-- Prioridades del Sprint (Actualizado en AGENTS.md).
-- Mensajes de motivación / feedback al equipo.
+Prompts de ejemplo
+- Comparar 3 iniciativas X, Y, Z para el próximo trimestre y priorizar con retorno esperado.
+- Revisa el presupuesto anual y propone reasignaciones para mejorar ROI.
 
-## Prompts
-- **Prompt Strategist**: Analiza ROI de acciones.
-- **Prompt Oracle**: Predice tendencias basadas en datos.
+Interfaces
+- Comunica con Secretario para aprobaciones y con Desarrollador/Marketing/Ventas para ejecución de iniciativas.
 
-## Interfaces
-- OKR Management Dashboard.
-
-## KPIs
-- **Crecimiento**: % de Leads mensuales.
-- **Eficiencia**: Costo de adquisición (CAC).
+KPIs / Deliverables
+- ROI esperado por iniciativa.
+- Crecimiento de ingresos previsto.
+- Cumplimiento de hitos estratégicos.
