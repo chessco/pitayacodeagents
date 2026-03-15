@@ -31,7 +31,7 @@ services:
       dockerfile: Dockerfile
     container_name: pitaya_dashboard
     ports:
-      - "3001:3001"
+      - "3000:3000"
 
 volumes:
   mysql_data:
