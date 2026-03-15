@@ -23,7 +23,7 @@ export default function Tasks() {
                 <div className="text-lg font-semibold">{task.title}</div>
                 <div className="text-sm text-slate-400">{task.description}</div>
               </div>
-              <span className={px-3 py-1 text-xs rounded-full }>
+              <span className={`px-3 py-1 text-xs rounded-full ${task.status === 'Completed' ? 'bg-teal-500/10 text-teal-400' : 'bg-amber-500/10 text-amber-500'}`}>
                 {task.status}
               </span>
             </div>
