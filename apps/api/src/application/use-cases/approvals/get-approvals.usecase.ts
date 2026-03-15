@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { IApprovalRepository } from '../../../domain/approvals/approval.repository';
+import type { IApprovalRepository } from '../../../domain/approvals/approval.repository';
 
 @Injectable()
 export class GetApprovalsUseCase {
