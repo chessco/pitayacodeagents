@@ -1,0 +1,4 @@
+src/components/CommandPalette.tsx(4,1): error TS6133: 'cn' is declared but its value is never read.
+src/pages/Dashboard.tsx(2,1): error TS6133: 'motion' is declared but its value is never read.
+src/pages/Dashboard.tsx(3,15): error TS6133: 'HelpCircle' is declared but its value is never read.
+src/pages/Operations.tsx(2,28): error TS6133: 'CardTitle' is declared but its value is never read.

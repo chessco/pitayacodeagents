@@ -15,6 +15,8 @@ model Tenant {
   metrics   Metric[]
   projects  SiteProject[]
   auditLogs AuditLog[]
+  tasks     Task[]
+  approvals Approval[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -36,19 +38,29 @@ model Agent {
 }
 
 model Task {
-  id           String   @id @default(uuid())
-  title        String
-  description  String   @db.Text
-  agentOwnerId String
-  agentOwner   Agent    @relation(fields: [agentOwnerId], references: [id])
-  status       String   @default("Pending")
-  priority     String   @default("Medium")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                 String   @id @default(uuid())
+  tenantId           String
+  tenant             Tenant   @relation(fields: [tenantId], references: [id])
+  title              String
+  description        String   @db.Text
+  agentOwnerId       String
+  agentOwner         Agent    @relation(fields: [agentOwnerId], references: [id])
+  status             String   @default("Pending")
+  priority           String   @default("Medium")
+  executionMode      String?
+  executionStatus    String   @default("pending") // pending, dispatched, running, completed, failed
+  executionTarget    String?
+  openclawSessionKey String?
+  executionResult    String?  @db.Text
+  executionLog       String?  @db.Text
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }
 
 model Approval {
   id               String   @id @default(uuid())
+  tenantId         String
+  tenant           Tenant   @relation(fields: [tenantId], references: [id])
   requesterAgentId String
   requesterAgent   Agent    @relation("requester", fields: [requesterAgentId], references: [id])
   action           String

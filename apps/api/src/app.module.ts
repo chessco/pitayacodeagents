@@ -1,6 +1,7 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { PrismaModule } from './prisma/prisma.module';
 import { TenantMiddleware } from './common/middleware/tenant.middleware';
+import { OpenClawModule } from './modules/openclaw/openclaw.module';
 
 import { AgentsController } from './interfaces/http/controllers/agents.controller';
 import { TasksController } from './interfaces/http/controllers/tasks.controller';
@@ -18,7 +19,7 @@ import { PrismaTaskRepository } from './infrastructure/persistence/prisma/reposi
 import { PrismaApprovalRepository } from './infrastructure/persistence/prisma/repositories/prisma-approval.repository';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [PrismaModule, OpenClawModule],
   controllers: [
     AgentsController,
     TasksController,
