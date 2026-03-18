@@ -1,6 +1,15 @@
+import { useState, useEffect } from 'react';
 import { Search, Bell, User } from 'lucide-react';
 
 export default function Topbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-notifications', handleOpen);
+    return () => window.removeEventListener('open-notifications', handleOpen);
+  }, []);
+
   return (
     <header className="h-16 border-b border-pitaya-border bg-pitaya-background flex items-center justify-between px-6 sticky top-0 z-20">
       <div className="flex items-center gap-4">
@@ -21,10 +30,31 @@ export default function Topbar() {
       </div>
 
       <div className="flex items-center gap-6">
-        <button className="relative text-slate-300 hover:text-white transition-colors">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-pitaya-magenta animate-pulse" />
-        </button>
+        <div className="relative">
+          <button onClick={() => setIsOpen(!isOpen)} className="relative text-slate-300 hover:text-white transition-colors">
+            <Bell className="w-5 h-5" />
+            <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-pitaya-magenta animate-pulse" />
+          </button>
+
+          {isOpen && (
+            <div className="absolute top-10 right-0 bg-[#090a0f] border border-slate-800 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] w-64 p-4 z-50 animate-in fade-in slide-in-from-top-1 duration-200">
+               <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Notificaciones</h3>
+               <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar">
+                  {[
+                    { text: 'Campaña Marketing iniciada', time: 'Hace 5min' },
+                    { text: 'Nuevo Gasto por aprobar', time: 'Hace 10min' },
+                    { text: 'Flujo TFJA completado', time: 'Hace 1h' }
+                  ].map((note, i) => (
+                    <div key={i} className="p-2 rounded-lg bg-[#10111a] hover:bg-[#141622] border border-slate-900 cursor-pointer transition-colors">
+                       <p className="text-xs text-slate-300">{note.text}</p>
+                       <p className="text-[9px] text-slate-600 mt-0.5">{note.time}</p>
+                    </div>
+                  ))}
+               </div>
+            </div>
+          )}
+        </div>
+
         <button className="flex items-center justify-center w-8 h-8 rounded-full bg-pitaya-surface border border-pitaya-border text-slate-300 hover:bg-pitaya-card hover:text-white transition-all">
           <User className="w-4 h-4" />
         </button>

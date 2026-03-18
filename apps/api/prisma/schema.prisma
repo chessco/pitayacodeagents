@@ -17,6 +17,7 @@ model Tenant {
   auditLogs AuditLog[]
   tasks     Task[]
   approvals Approval[]
+  automations Automation[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -96,4 +97,19 @@ model AuditLog {
   actor     String
   details   String   @db.Text
   timestamp DateTime @default(now())
+}
+
+model Automation {
+  id          String   @id @default(uuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  name        String
+  type        String   // Cron, Webhook
+  trigger     String   // e.g. "Cada 30 min"
+  agent       String   // e.g. "auditor-legal"
+  status      String   @default("Active") // Active, Draft
+  successRate Float?
+  lastRun     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

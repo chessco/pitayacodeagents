@@ -1,0 +1,7 @@
+{
+  "notion": {
+    "name": "Notion", 
+    "envVar": "NOTION_TOKEN", 
+    "envPath": ".env"
+  }
+}

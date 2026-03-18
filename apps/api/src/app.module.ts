@@ -7,6 +7,7 @@ import { AgentsController } from './interfaces/http/controllers/agents.controlle
 import { TasksController } from './interfaces/http/controllers/tasks.controller';
 import { ApprovalsController } from './interfaces/http/controllers/approvals.controller';
 import { DashboardController } from './interfaces/http/controllers/dashboard.controller';
+import { SettingsController } from './interfaces/http/controllers/settings.controller';
 
 import { GetAgentsUseCase } from './application/use-cases/agents/get-agents.usecase';
 import { CreateAgentUseCase } from './application/use-cases/agents/create-agent.usecase';
@@ -24,7 +25,8 @@ import { PrismaApprovalRepository } from './infrastructure/persistence/prisma/re
     AgentsController,
     TasksController,
     ApprovalsController,
-    DashboardController
+    DashboardController,
+    SettingsController
   ],
   providers: [
     GetAgentsUseCase, CreateAgentUseCase,

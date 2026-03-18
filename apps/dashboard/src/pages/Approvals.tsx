@@ -1,13 +1,44 @@
-import { ShieldCheck } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ShieldCheck, Loader } from 'lucide-react';
 import { ApprovalCard, RiskLevel } from '../components/ui/ApprovalCard';
-
-const approvalsData = [
-  { id: '1', title: 'Aprobar Gasto Campaña Q3', description: 'Gasto solicitado por Agente Marketing para anuncios en Meta. Total: $500 USD.', sourceAgent: 'Marketing', riskLevel: 'medium' as RiskLevel, timestamp: 'Hace 5 min' },
-  { id: '2', title: 'Actualizar Configuración API', description: 'Cambio de endpoint para pasarela de pagos stripe webhook. Requiere revisión técnica.', sourceAgent: 'Developer', riskLevel: 'high' as RiskLevel, timestamp: 'Hace 1 hora' },
-  { id: '3', title: 'Agendar Reunión con Acme Corp', description: 'Reunión de seguimiento de ventas. Libre de riesgos.', sourceAgent: 'Secretary', riskLevel: 'low' as RiskLevel, timestamp: 'Hace 2 horas' },
-];
+import { apiClient } from '../api/client';
 
 export default function Approvals() {
+  const [approvalsData, setApprovalsData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchApprovals = async () => {
+    try {
+      const response = await apiClient.get('/approvals');
+      setApprovalsData(Array.isArray(response) ? response : (response as any).data || []);
+    } catch (error) {
+      console.error('Failed to fetch approvals:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchApprovals();
+  }, []);
+
+  const handleApprove = async (id: string) => {
+    try {
+      await apiClient.post(`/approvals/${id}/approve`, {});
+      fetchApprovals(); // Recargar
+    } catch (error) {
+      console.error('Failed to approve:', error);
+    }
+  };
+
+  const handleReject = async (id: string) => {
+    try {
+      await apiClient.post(`/approvals/${id}/reject`, {});
+      fetchApprovals(); // Recargar
+    } catch (error) {
+      console.error('Failed to reject:', error);
+    }
+  };
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="p-4 rounded-xl border border-slate-800/10 bg-slate-900/10 flex items-center justify-between">
@@ -19,21 +50,36 @@ export default function Approvals() {
           </div>
         </div>
         <div className="text-xs text-slate-400 font-mono">
-           3 PENDIENTES
+           {approvalsData.filter(a => (a.status || 'Pending').toLowerCase() === 'pending').length} PENDIENTES
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {approvalsData.map((approval) => (
-          <ApprovalCard 
-            key={approval.id}
-            title={approval.title}
-            description={approval.description}
-            sourceAgent={approval.sourceAgent}
-            riskLevel={approval.riskLevel}
-            timestamp={approval.timestamp}
-          />
-        ))}
+        {loading && approvalsData.length === 0 ? (
+          <div className="col-span-3 flex justify-center p-12 text-slate-500 gap-2 items-center">
+            <Loader className="w-4 h-4 animate-spin text-pitaya-magenta" />
+            <span className="text-xs font-mono">Cargando aprobaciones...</span>
+          </div>
+        ) : approvalsData.filter(a => (a.status || 'Pending').toLowerCase() === 'pending').length === 0 ? (
+          <div className="col-span-3 flex justify-center p-12 text-slate-600 gap-2 items-center border border-dashed border-slate-800 rounded-xl bg-[#090a0f]/50">
+            <span className="text-xs font-mono p-12">No hay aprobaciones pendientes.</span>
+          </div>
+        ) : (
+          approvalsData
+            .filter(a => (a.status || 'Pending').toLowerCase() === 'pending')
+            .map((approval) => (
+            <ApprovalCard 
+              key={approval.id}
+              title={approval.action || approval.title || 'Aprobación Sin Título'}
+              description={approval.description || 'Revisión requerida para la acción ejecutada por el agente.'}
+              sourceAgent={approval.sourceAgent || approval.requesterAgentId || 'Agente'}
+              riskLevel={(approval.riskLevel || approval.risk || 'low') as RiskLevel}
+              timestamp={approval.timestamp || 'Reciente'}
+              onApprove={() => handleApprove(approval.id)}
+              onReject={() => handleReject(approval.id)}
+            />
+          ))
+        )}
       </div>
     </div>
   );

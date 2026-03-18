@@ -8,7 +8,7 @@ export class PrismaApprovalRepository implements IApprovalRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(): Promise<Approval[]> {
-    const records = await this.prisma.client.approval.findMany({ include: { agentRequester: true } });
+    const records = await this.prisma.client.approval.findMany({ include: { requesterAgent: true } });
     return records as any[];
   }
 
